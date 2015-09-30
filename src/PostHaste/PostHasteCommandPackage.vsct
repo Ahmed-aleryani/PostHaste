@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Commands package="guidPostHastePackage">
+
+    <Groups>
+      <Group guid="guidPostHastePackageCmdSet" id="PostHasteGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
+    </Groups>
+
+    <Buttons>
+      <Button guid="guidPostHastePackageCmdSet" id="PostHasteCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidPostHastePackageCmdSet" id="PostHasteGroup" />
+        <Strings>
+          <ButtonText>Send to hastebin</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidPostHastePackage" value="{5b751189-4824-43b5-b1d1-3c1e8f661105}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidPostHastePackageCmdSet" value="{6692533c-adee-4b9e-8a51-150cf60030d0}">
+      <IDSymbol name="PostHasteGroup" value="0x1020" />
+      <IDSymbol name="PostHasteCommandId" value="0x0100" />
+    </GuidSymbol>
+
+  </Symbols>
+</CommandTable>

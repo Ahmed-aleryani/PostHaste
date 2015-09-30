@@ -4,6 +4,8 @@
     <Identity Id="PostHaste.Eliot Jones.253b39c6-618a-4c4f-956a-d4fb639d90b2" Version="1.0" Language="en-US" Publisher="Eliot Jones" />
     <DisplayName>PostHaste</DisplayName>
     <Description xml:space="preserve">Post code in the editor to Hastebin and get a url linking to the code back</Description>
+    <License>https://github.com/EliotJones/PostHaste/blob/master/LICENSE.txt</License>
+    <GettingStartedGuide>https://github.com/EliotJones/PostHaste</GettingStartedGuide>
     <Tags>hastebin copy clipboard</Tags>
   </Metadata>
   <Installation>

@@ -14,7 +14,7 @@
       <Button guid="guidPostHastePackageCmdSet" id="PostHasteCommandId" priority="0x0100" type="Button">
         <Parent guid="guidPostHastePackageCmdSet" id="PostHasteGroup" />
         <Strings>
-          <ButtonText>Send to hastebin</ButtonText>
+          <ButtonText>Post Haste</ButtonText>
         </Strings>
       </Button>
     </Buttons>

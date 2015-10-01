@@ -12,7 +12,11 @@
             = new ReadOnlyDictionary<string, string>(
             new Dictionary<string, string>
             {
-                { "csharp", "cs" }
+                { "csharp", "cs" },
+                { "JavaScript", "js" },
+                { "XML", "xml" },
+                { "SQL Server Tools", "sql" },
+                { "TypeScript", "js" }
             }); 
 
         public LanguageUrlExtensionProvider(TextDocument document)

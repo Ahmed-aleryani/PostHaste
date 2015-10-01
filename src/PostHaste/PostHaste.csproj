@@ -52,6 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\ClipboardCommunicator.cs" />
+    <Compile Include="Core\LanguageUrlExtensionProvider.cs" />
     <Compile Include="PostHasteCommand.cs" />
     <Compile Include="PostHasteCommandPackage.cs" />
     <Compile Include="Core\HastebinRequest.cs" />

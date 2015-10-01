@@ -4,9 +4,16 @@
     {
         public string Key { get; set; }
 
-        public string GetUrl(string baseUrl)
+        public string GetUrl(string baseUrl, string extension)
         {
-            return $"{baseUrl}/{Key}";
+            var url = $"{baseUrl}/{Key}";
+
+            if (!string.IsNullOrWhiteSpace(extension))
+            {
+                url += $".{extension}";
+            }
+
+            return url;
         }
     }
 }

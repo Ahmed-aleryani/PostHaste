@@ -69,7 +69,7 @@
             {
                 var response = await request.PostAsync(textToUpload);
 
-                ClipboardCommunicator.AddToClipboard(response.GetUrl(url));
+                ClipboardCommunicator.AddToClipboard(response.GetUrl(url, new LanguageUrlExtensionProvider(currentOpenDocument).Extension));
             }
         }
 
@@ -78,7 +78,7 @@
             var developmentToolsEnvironment = Package.GetGlobalService(typeof(DTE)) as DTE;
 
             var activeDocument = developmentToolsEnvironment?.ActiveDocument;
-
+            
             return activeDocument?.Object() as TextDocument;
         }
     }

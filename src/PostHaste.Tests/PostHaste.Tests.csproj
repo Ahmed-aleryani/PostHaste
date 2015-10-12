@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Formatting\CodeLineTests.cs" />
     <Compile Include="Formatting\ExcessTabDetectorTests.cs" />
+    <Compile Include="Formatting\ExcessTabRemoverTests.cs" />
     <Compile Include="Formatting\FormattingTestsBase.cs" />
     <Compile Include="Formatting\LineSplitterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

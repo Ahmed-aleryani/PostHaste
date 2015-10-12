@@ -13,17 +13,18 @@
             new Dictionary<string, string>
             {
                 { "csharp", "cs" },
-                { "JavaScript", "js" },
-                { "XML", "xml" },
-                { "SQL Server Tools", "sql" },
-                { "TypeScript", "js" }
+                { "javascript", "js" },
+                { "xml", "xml" },
+                { "sql server tools", "sql" },
+                { "typescript", "js" }
             }); 
 
         public LanguageUrlExtensionProvider(TextDocument document)
         {
-            if (document.Language != null && Extensions.ContainsKey(document.Language.ToLowerInvariant()))
+            string extension;
+            if (document.Language != null && Extensions.TryGetValue(document.Language.ToLowerInvariant(), out extension))
             {
-                Extension = Extensions[document.Language.ToLowerInvariant()];
+                Extension = extension;
             }
         }
     }

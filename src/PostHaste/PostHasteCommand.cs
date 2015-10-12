@@ -5,7 +5,9 @@
     using Core;
     using Microsoft.VisualStudio.Shell;
     using EnvDTE;
-    
+    using Formatting;
+    using Microsoft.VisualStudio.Shell.Interop;
+
     internal class PostHasteCommand
     {
         /// <summary>
@@ -21,6 +23,7 @@
         private readonly Package package;
         private readonly TextSelector textSelector;
         private readonly string url;
+        private readonly IVsStatusbar statusBar;
         
         private PostHasteCommand(Package package, TextSelector textSelector)
         {
@@ -37,6 +40,8 @@
                 var menuItem = new MenuCommand(MenuItemCallback, menuCommandId);
                 commandService.AddCommand(menuItem);
             }
+
+            statusBar = ServiceProvider.GetService(typeof(SVsStatusbar)) as IVsStatusbar;
         }
 
         /// <summary>
@@ -53,7 +58,6 @@
         /// <summary>
         /// Initializes the singleton instance of the command.
         /// </summary>
-        /// <param name="package">Owner package, not null.</param>
         public static void Initialize(Package package, TextSelector textSelector)
         {
             Instance = new PostHasteCommand(package, textSelector);
@@ -65,11 +69,17 @@
 
             var textToUpload = textSelector.GetDocumentSelection(currentOpenDocument);
 
+            var urlExtension = new LanguageUrlExtensionProvider(currentOpenDocument).Extension;
+
             using (var request = new HasteRequest(url))
             {
                 var response = await request.PostAsync(textToUpload);
 
-                ClipboardCommunicator.AddToClipboard(response.GetUrl(url, new LanguageUrlExtensionProvider(currentOpenDocument).Extension));
+                var fullUrl = response.GetUrl(url, urlExtension);
+
+                ClipboardCommunicator.AddToClipboard(fullUrl);
+
+                SetStatusBarText($"Code URL copied to clipboard: {fullUrl}");
             }
         }
 
@@ -80,6 +90,15 @@
             var activeDocument = developmentToolsEnvironment?.ActiveDocument;
             
             return activeDocument?.Object() as TextDocument;
+        }
+
+        private void SetStatusBarText(string text)
+        {
+            int frozen;
+            if (statusBar != null && statusBar.IsFrozen(out frozen) == 0)
+            {
+                statusBar.SetText(text);
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
         {
             Guard.ArgumentNotNull(nameof(text), text);
 
-            return text.Split(new[] { CodeLine.NewLine }, StringSplitOptions.None);
+            return text.Split(new[] { CodeLine.NewLine }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         public static CodeLine[] TextAsCodeLines(string text, int spacesPerTab)

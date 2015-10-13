@@ -97,5 +97,44 @@
 
             result.ShouldEqual($"{AnyString}{CodeLine.NewLine}{TabString}{AnyString}");
         }
+
+        public void TwoNewlines()
+        {
+            var input =
+                $"{TabString}{AnyString}{CodeLine.NewLine}{TabString}{CodeLine.NewLine}{TabString}{CodeLine.NewLine}";
+
+            var result = ExcessTabRemover.RemoveExcessTabs(input, TabCount);
+
+            result.ShouldEqual($"{AnyString}{CodeLine.NewLine}{CodeLine.NewLine}{CodeLine.NewLine}");
+        }
+
+        public void ThreeNewLines()
+        {
+            var input =
+                $"{TabString}{AnyString}{CodeLine.NewLine}{TabString}{CodeLine.NewLine}{TabString}{CodeLine.NewLine}{TabString}{AnyString}";
+
+            var result = ExcessTabRemover.RemoveExcessTabs(input, TabCount);
+
+            result.ShouldEqual($"{AnyString}{CodeLine.NewLine}{CodeLine.NewLine}{CodeLine.NewLine}{AnyString}");
+        }
+
+        public void ThreeNewLinesEndingWithNewLine()
+        {
+            var input =
+                $"{TabString}{AnyString}{CodeLine.NewLine}{TabString}{CodeLine.NewLine}{TabString}{CodeLine.NewLine}{TabString}{AnyString}{CodeLine.NewLine}";
+
+            var result = ExcessTabRemover.RemoveExcessTabs(input, TabCount);
+
+            result.ShouldEqual($"{AnyString}{CodeLine.NewLine}{CodeLine.NewLine}{CodeLine.NewLine}{AnyString}{CodeLine.NewLine}");
+        }
+
+        public void TwoLinesNoExcessTabsWithNewLine()
+        {
+            var input = $"{AnyString}{CodeLine.NewLine}{TabString}{AnyString}{CodeLine.NewLine}";
+
+            var result = ExcessTabRemover.RemoveExcessTabs(input, TabCount);
+
+            result.ShouldEqual(input);
+        }
     }
 }

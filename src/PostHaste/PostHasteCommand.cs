@@ -63,17 +63,31 @@
             Instance = new PostHasteCommand(package, textSelector);
         }
 
-        private async void MenuItemCallback(object sender, EventArgs e)
+        private void MenuItemCallback(object sender, EventArgs e)
         {
             var currentOpenDocument = GetCurrentTextDocument();
 
-            var textToUpload = textSelector.GetDocumentSelection(currentOpenDocument);
+            try
+            {
+                UploadDocumentTextToHastebin(currentOpenDocument);
+            }
+            catch (Exception)
+            {
+                SetStatusBarText("An error occurred trying to post to hastebin");
+            }
+        }
 
-            var urlExtension = new LanguageUrlExtensionProvider(currentOpenDocument).Extension;
+        private async void UploadDocumentTextToHastebin(TextDocument document)
+        {
+            var textToUpload = textSelector.GetDocumentSelection(document);
+
+            var textWithExcessTabsRemoved = ExcessTabRemover.RemoveExcessTabs(textToUpload, document.TabSize);
+
+            var urlExtension = new LanguageUrlExtensionProvider(document).Extension;
 
             using (var request = new HasteRequest(url))
             {
-                var response = await request.PostAsync(textToUpload);
+                var response = await request.PostAsync(textWithExcessTabsRemoved);
 
                 var fullUrl = response.GetUrl(url, urlExtension);
 

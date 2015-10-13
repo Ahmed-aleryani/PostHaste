@@ -6,16 +6,18 @@
 
     public class ExcessTabDetector
     {
-        public static int DetectExcessTabDepth(IList<CodeLine> codeLines)
+        public static int DetectExcessTabDepth(IEnumerable<CodeLine> codeLines)
         {
             Guard.ArgumentNotNull(nameof(codeLines), codeLines);
 
-            if (codeLines.Count == 0)
+            var enumerable = codeLines as CodeLine[] ?? codeLines.ToArray();
+
+            if (!enumerable.Any())
             {
                 return 0;
             }
 
-            return codeLines.Min(cl => cl.TabCount);
+            return enumerable.Min(cl => cl.TabCount);
         }
     }
 }

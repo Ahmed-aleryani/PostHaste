@@ -17,7 +17,7 @@
         {
             var result = LineSplitter.TextAsCodeLines(string.Empty, TabCount);
 
-            result.ShouldBeEmpty();
+            result[0].Line.ShouldBeEmpty();
         }
 
         public void SingleLineWithTab()

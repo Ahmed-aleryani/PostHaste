@@ -48,11 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomConvention.cs" />
     <Compile Include="Formatting\CodeLineTests.cs" />
     <Compile Include="Formatting\ExcessTabDetectorTests.cs" />
     <Compile Include="Formatting\ExcessTabRemoverTests.cs" />
     <Compile Include="Formatting\FormattingTestsBase.cs" />
     <Compile Include="Formatting\LineSplitterTests.cs" />
+    <Compile Include="ParameterProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

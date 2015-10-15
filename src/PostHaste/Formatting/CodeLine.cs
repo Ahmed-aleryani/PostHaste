@@ -31,5 +31,7 @@
         public string Line { get; }
 
         public int TabCount => SpaceCount/spacesPerTab;
+
+        public bool IsEmpty => string.IsNullOrEmpty(Line);
     }
 }

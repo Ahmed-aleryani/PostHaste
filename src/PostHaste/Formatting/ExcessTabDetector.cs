@@ -12,12 +12,12 @@
 
             var enumerable = codeLines as CodeLine[] ?? codeLines.ToArray();
 
-            if (!enumerable.Any())
+            if (enumerable.All(cl => cl.IsEmpty) || !enumerable.Any())
             {
                 return 0;
             }
 
-            return enumerable.Min(cl => cl.TabCount);
+            return enumerable.Where(cl => !cl.IsEmpty).Min(cl => cl.TabCount);
         }
     }
 }

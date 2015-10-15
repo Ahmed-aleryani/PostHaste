@@ -136,5 +136,21 @@
 
             result.ShouldEqual(input);
         }
+
+        public void TwoNewLinesWithTabs()
+        {
+            var input = $"{TabString}{AnyString}{CodeLine.NewLine}{CodeLine.NewLine}{TabString}{AnyString}";
+
+            var result = ExcessTabRemover.RemoveExcessTabs(input, TabCount);
+
+            result.ShouldEqual($"{AnyString}{CodeLine.NewLine}{CodeLine.NewLine}{AnyString}");
+        }
+
+        public void ParameterisedTabRemoverTest(string input, string expected)
+        {
+            var result = ExcessTabRemover.RemoveExcessTabs(input, TabCount);
+
+            result.ShouldEqual(expected);
+        }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.Design;
+    using System.Net.Http;
     using Core;
     using Microsoft.VisualStudio.Shell;
     using EnvDTE;
@@ -19,12 +20,12 @@
         /// Command menu group (command set GUID).
         /// </summary>
         public static readonly Guid CommandSet = new Guid("6692533c-adee-4b9e-8a51-150cf60030d0");
-        
+
         private readonly Package package;
         private readonly TextSelector textSelector;
         private readonly string url;
         private readonly IVsStatusbar statusBar;
-        
+
         private PostHasteCommand(Package package, TextSelector textSelector)
         {
             if (package == null) throw new ArgumentNullException(nameof(package));
@@ -67,14 +68,7 @@
         {
             var currentOpenDocument = GetCurrentTextDocument();
 
-            try
-            {
-                UploadDocumentTextToHastebin(currentOpenDocument);
-            }
-            catch (Exception)
-            {
-                SetStatusBarText("An error occurred trying to post to hastebin");
-            }
+            UploadDocumentTextToHastebin(currentOpenDocument);
         }
 
         private async void UploadDocumentTextToHastebin(TextDocument document)
@@ -87,13 +81,20 @@
 
             using (var request = new HasteRequest(url))
             {
-                var response = await request.PostAsync(textWithExcessTabsRemoved);
+                try
+                {
+                    var response = await request.PostAsync(textWithExcessTabsRemoved);
 
-                var fullUrl = response.GetUrl(url, urlExtension);
+                    var fullUrl = response.GetUrl(url, urlExtension);
 
-                ClipboardCommunicator.AddToClipboard(fullUrl);
+                    ClipboardCommunicator.AddToClipboard(fullUrl);
 
-                SetStatusBarText($"Code URL copied to clipboard: {fullUrl}");
+                    SetStatusBarText($"Code URL copied to clipboard: {fullUrl}");
+                }
+                catch (HttpRequestException)
+                {
+                    SetStatusBarText("An error occurred trying to post to hastebin");
+                }
             }
         }
 
@@ -102,7 +103,7 @@
             var developmentToolsEnvironment = Package.GetGlobalService(typeof(DTE)) as DTE;
 
             var activeDocument = developmentToolsEnvironment?.ActiveDocument;
-            
+
             return activeDocument?.Object() as TextDocument;
         }
 

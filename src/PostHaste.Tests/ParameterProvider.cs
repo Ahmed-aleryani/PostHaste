@@ -65,8 +65,8 @@ namespace PostHaste.Tests
             },
             new[]
             {
-                $"{Newline}{Newline}{AnyString}",
-                $"{Newline}{Newline}{AnyString}"
+                $"{TabString}{Newline}",
+                $"{Newline}"
             },
             new []
             {

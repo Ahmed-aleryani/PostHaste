@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="HasteBinUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://hastebin.com</Value>
+      <Value Profile="(Default)">https://hastebin.com</Value>
     </Setting>
   </Settings>
 </SettingsFile>

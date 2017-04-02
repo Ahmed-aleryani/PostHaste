@@ -81,20 +81,24 @@
 
             using (var request = new HasteRequest(url))
             {
-                try
-                {
-                    var response = await request.PostAsync(textWithExcessTabsRemoved);
+	            try
+	            {
+		            var response = await request.PostAsync(textWithExcessTabsRemoved);
 
-                    var fullUrl = response.GetUrl(url, urlExtension);
+		            var fullUrl = response.GetUrl(url, urlExtension);
 
-                    ClipboardCommunicator.AddToClipboard(fullUrl);
+		            ClipboardCommunicator.AddToClipboard(fullUrl);
 
-                    SetStatusBarText($"Code URL copied to clipboard: {fullUrl}");
-                }
-                catch (HttpRequestException)
-                {
-                    SetStatusBarText("An error occurred trying to post to hastebin");
-                }
+		            SetStatusBarText($"Code URL copied to clipboard: {fullUrl}");
+	            }
+	            catch (HttpRequestException)
+	            {
+		            SetStatusBarText("An error occurred trying to post to hastebin");
+	            }
+	            catch (Exception ex)
+	            {
+		            SetStatusBarText("An unknown error occurred trying to post to hastebin: " + ex.Message);
+	            }
             }
         }
 

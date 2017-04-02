@@ -210,3 +210,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+*.snk
+/nuget.exe
+/secure-file/tools/secure-file.exe

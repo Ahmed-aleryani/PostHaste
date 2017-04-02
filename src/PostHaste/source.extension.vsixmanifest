@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="PostHaste.Eliot Jones.253b39c6-618a-4c4f-956a-d4fb639d90b2" Version="1.5" Language="en-US" Publisher="Eliot Jones" />
+    <Identity Id="PostHaste.Eliot Jones.253b39c6-618a-4c4f-956a-d4fb639d90b2" Version="1.6" Language="en-US" Publisher="Eliot Jones" />
     <DisplayName>PostHaste</DisplayName>
     <Description xml:space="preserve">Highlight code and send it to hastebin. You will then have a URL in your clipboard which links to a haste containing the code.</Description>
     <MoreInfo>https://github.com/EliotJones/PostHaste</MoreInfo>

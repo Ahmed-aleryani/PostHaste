@@ -25,7 +25,7 @@ namespace PostHaste.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://hastebin.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://hastebin.com")]
         public string HasteBinUrl {
             get {
                 return ((string)(this["HasteBinUrl"]));
